@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>45 ❤️ Maminko</title>
+
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:radial-gradient(circle at top,#ffe3ec,#fff6d1);
+font-family:Arial;
+overflow:hidden;
+}
+
+.card{
+background:rgba(255,255,255,.7);
+backdrop-filter:blur(14px);
+padding:35px;
+border-radius:28px;
+text-align:center;
+width:90%;
+max-width:850px;
+box-shadow:0 30px 80px rgba(0,0,0,.2);
+animation:pop 1s ease;
+}
+
+@keyframes pop{
+from{transform:scale(.9);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+h1{
+color:#ff2f6d;
+font-size:34px;
+margin-bottom:5px;
+}
+
+.sub{
+color:#666;
+margin-bottom:25px;
+font-size:16px;
+}
+
+/* FOX */
+.fox-wrap{
+position:relative;
+width:320px;
+height:532px;
+margin:0 auto;
+cursor:pointer;
+filter:drop-shadow(0 15px 25px rgba(0,0,0,.2));
+transition:.2s;
+}
+
+.fox-wrap:active{
+transform:scale(.98);
+}
+
+.fox-img{
+width:100%;
+height:100%;
+object-fit:contain;
+user-select:none;
+pointer-events:none;
+}
+
+/* FRKAČKA */
+.blower{
+position:absolute;
+
+/* 👇 dolní část - NOS */
+bottom:38px;
+left:50%;
+transform:translateX(-50%);
+width:65px;
+height:9px;
+background:#ffd400;
+border-radius:20px;
+opacity:.95;
+transform-origin:left center;
+box-shadow:0 6px 12px rgba(0,0,0,.15);
+transition:.18s;
+}
+
+.blower.active{
+width:180px;
+transform:translateX(-50%) rotate(14deg);
+}
+
+/* TEXT */
+.msg{
+margin-top:18px;
+color:#444;
+font-size:18px;
+line-height:1.5;
+}
+
+.small{
+color:#777;
+font-size:14px;
+margin-top:6px;
+}
+
+/* CONFETTI */
+.confetti{
+position:fixed;
+top:-10px;
+width:8px;
+height:14px;
+animation:fall 2.8s linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(120vh) rotate(720deg);
+opacity:.8;
+}
+}
+
+/* SCREEN SHAKE */
+.shake{
+animation:shake .25s;
+}
+
+@keyframes shake{
+0%{transform:translate(0,0)}
+25%{transform:translate(6px,-4px)}
+50%{transform:translate(-6px,4px)}
+75%{transform:translate(4px,2px)}
+100%{transform:translate(0,0)}
+}
+
+/* GLOW FLASH */
+.flash{
+position:fixed;
+inset:0;
+background:white;
+opacity:0;
+pointer-events:none;
+}
+
+.flash.active{
+animation:flash .25s ease;
+}
+
+@keyframes flash{
+0%{opacity:0}
+50%{opacity:.35}
+100%{opacity:0}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>❤️ Mamince k 45. narozeninám ❤️</h1>
+<div class="sub">klikni na lišku 🦊</div>
+
+<div class="fox-wrap" id="fox">
+
+<img src="liskananar.png" class="fox-img">
+
+<div class="blower" id="blower"></div>
+
+</div>
+
+<div class="msg">
+💖 Maminko, všechno nejlepší k 45! 💖
+</div>
+
+<div class="small">
+Mám Tě moc rád ❤️
+</div>
+
+</div>
+
+<div class="flash" id="flash"></div>
+
+<script>
+
+const fox = document.getElementById("fox");
+const blower = document.getElementById("blower");
+const flash = document.getElementById("flash");
+
+function confettiBurst(){
+
+    for(let i=0;i<45;i++){ // 45 = věk ❤️
+
+        const c = document.createElement("div");
+        c.className="confetti";
+        c.style.left=Math.random()*100+"%";
+        c.style.background=[
+            "#ff2f6d",
+            "#ffd400",
+            "#4cc9f0",
+            "#7b2cbf",
+            "#06d6a0"
+        ][Math.floor(Math.random()*5)];
+
+        c.style.animationDuration=(2+Math.random()*1.8)+"s";
+
+        document.body.appendChild(c);
+
+        setTimeout(()=>c.remove(),4000);
+    }
+}
+
+fox.addEventListener("click", () => {
+
+    // frkačka
+    blower.classList.add("active");
+    setTimeout(()=>blower.classList.remove("active"),400);
+
+    // flash
+    flash.classList.add("active");
+    setTimeout(()=>flash.classList.remove("active"),250);
+
+    // shake
+    document.body.classList.add("shake");
+    setTimeout(()=>document.body.classList.remove("shake"),250);
+
+    // konfety
+    confettiBurst();
+
+});
+
+</script>
+
+</body>
+</html>
