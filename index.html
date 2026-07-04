@@ -213,6 +213,7 @@ to{box-shadow:0 0 30px rgba(255,47,109,.3);}
 </head>
 
 <body>
+  <audio id="blowerSound" src="partyblower.mp3" preload="auto"></audio>
 
 <div class="card glow">
 
@@ -248,6 +249,7 @@ to{box-shadow:0 0 30px rgba(255,47,109,.3);}
 <script>
 
 const fox=document.getElementById("fox");
+  const blowerSound = document.getElementById("blowerSound");
 const blower=document.getElementById("blower");
 
 const popup=document.getElementById("popup");
@@ -260,6 +262,9 @@ const c5=document.getElementById("c5");
 
 /* frkačka */
 fox.onclick=()=>{
+
+blowerSound.currentTime = 0;
+blowerSound.play();
 
 blower.classList.add("active");
 
